@@ -1,0 +1,5 @@
+TODO
+
+1. Template html file using templating language on python webserver
+2. Make program deployable on heroku
+3. Fix up html to look decent

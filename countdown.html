@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Countdown</title>
+        <style type="text/css">
+            html{
+                min-height:100%;/* make sure it is at least as tall as the viewport */
+                position:relative
+            }
+            .background {
+                border-style: none;
+                width: 62px;
+                height: 58px;
+            }
+            .numbers {
+                border-style: none;
+                background-color: transparent;
+                padding: 0px;
+                width: 62px;
+                height: 42px;
+                text-align: center;
+                font-family: Arial;
+                font-size: 34px;
+                font-weight: normal;    /* options are normal, bold, bolder, lighter */
+                color: #FFFFFF;     /* change color using the hexadecimal color codes for HTML */
+            }
+            .title {    /* the styles below will affect the title under the numbers, i.e., “Days”, “Hours”, etc. */
+                border: none;
+                padding: 0px;
+                margin: 0px 3px;
+                width: 62px;
+                text-align: center;
+                font-family: Arial;
+                font-size: 10px;
+                font-weight: normal;    /* options are normal, bold, bolder, lighter */
+                color: #999999;    /* change color using the hexadecimal color codes for HTML */
+                background-color: #000000;
+            }
+            #form {    /* the styles below will affect the outer border of the countdown timer */
+                width: 400px;
+                height: 80px;
+                border-style: ridge;    /* options are none, dotted, dashed, solid, double, groove, ridge, inset, outset */
+                border-width: 2px;
+                border-color: #666666;  /* change color using the hexadecimal color codes for HTML */
+                background-color: #000000;
+                padding: 5px;
+            }
+            .line {
+                width: 62px;
+                height: 2px;
+                z-index: 15;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="form">
+            <div class="numbers" id="count2" style="position: absolute; top: 10px; height: 60px; padding: 15px 0 0 10px; background-color: #000000; z-index: 20;"></div>
+
+            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 69px; top: 12px;"/>
+            <img src="line.jpg" class="line" style="position: absolute; left: 69px; top: 40px;"/>
+            <div class="numbers" id="dday" style="position: absolute; left: 69px; top: 21px;" ></div>
+
+            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 141px; top: 12px;"/>
+            <img src="line.jpg" class="line" style="position: absolute; left: 141px; top: 40px;"/>
+            <div class="numbers" id="dhour" style="position: absolute; left: 141px; top: 21px;" ></div>
+
+            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 213px; top: 12px;"/>
+            <img src="line.jpg" class="line" style="position: absolute; left: 213px; top: 40px;"/>
+            <div class="numbers" id="dmin" style="position: absolute; left: 213px; top: 21px;" ></div>
+
+            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 285px; top: 12px;"/>
+            <img src="line.jpg" class="line" style="position: absolute; left: 285px; top: 40px;"/>
+            <div class="numbers" id="dsec" style="position: absolute; left: 285px; top: 21px;" ></div>
+
+            <div class="title" id="days" style="position: absolute; left: 66px; top: 73px;" >Days</div>
+            <div class="title" id="hours" style="position: absolute; left: 138px; top: 73px;" >Hours</div>
+            <div class="title" id="minutes" style="position: absolute; left: 210px; top: 73px;" >Minutes</div>
+            <div class="title" id="seconds" style="position: absolute; left: 282px; top: 73px;" >Seconds</div>
+        </div>
+        <script type="text/javascript">
+            // Constants
+            //var BigDay = new Date("December 25, 2020");
+            var BigDay = new Date("September 1, 2013");
+            var msg = "Merry Xmas"
+            var msPerDay = 24 * 60 * 60 * 1000 ;
+
+            function countdown(){
+
+                var today = new Date();
+                var timeLeft = (BigDay.getTime() - today.getTime());
+                var e_daysLeft = timeLeft / msPerDay;
+                var daysLeft = Math.floor(e_daysLeft);
+                var e_hrsLeft = (e_daysLeft - daysLeft) * 24;
+                var hrsLeft = Math.floor(e_hrsLeft);
+                var e_minsLeft = (e_hrsLeft - hrsLeft) * 60;
+                var minsLeft = Math.floor(e_minsLeft);
+                var secsLeft = Math.floor((e_minsLeft- minsLeft) * 60);
+                if (daysLeft <= 0 && hrsLeft <= 0 && minsLeft <= 0 && secsLeft <=0){
+                    document.getElementById('count2').innerHTML=msg;
+                    document.getElementById('count2').style.display="inline";
+                    document.getElementById('count2').style.width="390px";
+                    document.getElementById('dday').style.display="none";
+                    document.getElementById('dhour').style.display="none";
+                    document.getElementById('dmin').style.display="none";
+                    document.getElementById('dsec').style.display="none";
+                    document.getElementById('days').style.display="none";
+                    document.getElementById('hours').style.display="none";
+                    document.getElementById('minutes').style.display="none";
+                    document.getElementById('seconds').style.display="none";
+                    return;
+                }
+                else {
+                    document.getElementById('count2').style.display="none";
+                    document.getElementById('dday').innerHTML=daysLeft;
+                    document.getElementById('dhour').innerHTML=hrsLeft;
+                    document.getElementById('dmin').innerHTML=minsLeft;
+                    document.getElementById('dsec').innerHTML=secsLeft;
+                    setTimeout("countdown()",1000);
+                }
+            }
+            countdown();
+        </script>
+    </body>
+</html>
+
