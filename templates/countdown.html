@@ -78,15 +78,17 @@
             <div class="title" id="minutes" style="position: absolute; left: 210px; top: 73px;" >Minutes</div>
             <div class="title" id="seconds" style="position: absolute; left: 282px; top: 73px;" >Seconds</div>
         </div>
+
         <script type="text/javascript">
             // Constants
             //var BigDay = new Date("December 25, 2020");
-            var BigDay = new Date("September 1, 2013");
-            var msg = "Merry Xmas"
+            var BigDay = new Date("{{ date }}");
+            var msg = "{{ msg }}"
             var msPerDay = 24 * 60 * 60 * 1000 ;
+            console.log(BigDay)
+            console.log(msg)
 
             function countdown(){
-
                 var today = new Date();
                 var timeLeft = (BigDay.getTime() - today.getTime());
                 var e_daysLeft = timeLeft / msPerDay;
@@ -96,26 +98,22 @@
                 var e_minsLeft = (e_hrsLeft - hrsLeft) * 60;
                 var minsLeft = Math.floor(e_minsLeft);
                 var secsLeft = Math.floor((e_minsLeft- minsLeft) * 60);
-                if (daysLeft <= 0 && hrsLeft <= 0 && minsLeft <= 0 && secsLeft <=0){
-                    document.getElementById('count2').innerHTML=msg;
-                    document.getElementById('count2').style.display="inline";
-                    document.getElementById('count2').style.width="390px";
-                    document.getElementById('dday').style.display="none";
-                    document.getElementById('dhour').style.display="none";
-                    document.getElementById('dmin').style.display="none";
-                    document.getElementById('dsec').style.display="none";
-                    document.getElementById('days').style.display="none";
-                    document.getElementById('hours').style.display="none";
-                    document.getElementById('minutes').style.display="none";
-                    document.getElementById('seconds').style.display="none";
+                if (timeLeft <= 0){
+                    document.getElementById('count2').innerHTML = msg;
+                    document.getElementById('count2').style.display = "inline";
+                    document.getElementById('count2').style.width = "390px";
+                    document.getElementById('dday').innerHTML  = 0;
+                    document.getElementById('dhour').innerHTML = 0;
+                    document.getElementById('dmin').innerHTML  = 0;
+                    document.getElementById('dsec').innerHTML  = 0;
                     return;
                 }
                 else {
-                    document.getElementById('count2').style.display="none";
-                    document.getElementById('dday').innerHTML=daysLeft;
-                    document.getElementById('dhour').innerHTML=hrsLeft;
-                    document.getElementById('dmin').innerHTML=minsLeft;
-                    document.getElementById('dsec').innerHTML=secsLeft;
+                    document.getElementById('count2').style.display = "none";
+                    document.getElementById('dday').innerHTML  = daysLeft;
+                    document.getElementById('dhour').innerHTML = hrsLeft;
+                    document.getElementById('dmin').innerHTML  = minsLeft;
+                    document.getElementById('dsec').innerHTML  = secsLeft;
                     setTimeout("countdown()",1000);
                 }
             }
