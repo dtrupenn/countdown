@@ -8,75 +8,92 @@
                 min-height:100%;/* make sure it is at least as tall as the viewport */
                 position:relative
             }
-            .background {
-                border-style: none;
-                width: 62px;
-                height: 58px;
+
+            body{
+                background-color: #800080;
             }
+
+            .background {
+                position:absolute;
+                top: 12px;
+                border-style: none;
+                width: 125px;
+                height: 125px;
+            }
+
+            .line {
+                position:absolute;
+                top: 75px;
+                width: 125px;
+                height: 2px;
+                z-index: 15;
+            }
+
             .numbers {
+                position:absolute;
+                top: 45px;
                 border-style: none;
                 background-color: transparent;
                 padding: 0px;
-                width: 62px;
-                height: 42px;
+                width: 125px;
+                height: 125px;
                 text-align: center;
                 font-family: Arial;
-                font-size: 34px;
+                font-size: 55px;
                 font-weight: normal;    /* options are normal, bold, bolder, lighter */
                 color: #FFFFFF;     /* change color using the hexadecimal color codes for HTML */
             }
+
+
             .title {    /* the styles below will affect the title under the numbers, i.e., “Days”, “Hours”, etc. */
+                position:absolute;
+                top: 145px;
                 border: none;
                 padding: 0px;
                 margin: 0px 3px;
-                width: 62px;
+                width: 125px;
                 text-align: center;
                 font-family: Arial;
-                font-size: 10px;
+                font-size: 25px;
                 font-weight: normal;    /* options are normal, bold, bolder, lighter */
                 color: #999999;    /* change color using the hexadecimal color codes for HTML */
-                background-color: #000000;
+                background-color: #5F0B5F;
             }
+
             #form {    /* the styles below will affect the outer border of the countdown timer */
-                width: 400px;
-                height: 80px;
-                border-style: ridge;    /* options are none, dotted, dashed, solid, double, groove, ridge, inset, outset */
-                border-width: 2px;
-                border-color: #666666;  /* change color using the hexadecimal color codes for HTML */
-                background-color: #000000;
-                padding: 5px;
-            }
-            .line {
-                width: 62px;
-                height: 2px;
-                z-index: 15;
+                border-style: none;
+                position: absolute;
+                top: 103px;
+                width: 100%;
+                height: 100%;
             }
         </style>
     </head>
     <body>
         <div id="form">
-            <div class="numbers" id="count2" style="position: absolute; top: 10px; height: 60px; padding: 15px 0 0 10px; background-color: #000000; z-index: 20;"></div>
+            <img src="imgs/bkgdimage.gif" class="background" style="left: 30%"/>
+            <img src="imgs/line.jpg" class="line" style="left: 30%"/>
+            <div class="numbers" id="dday" style="left: 30%"></div>
 
-            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 69px; top: 12px;"/>
-            <img src="line.jpg" class="line" style="position: absolute; left: 69px; top: 40px;"/>
-            <div class="numbers" id="dday" style="position: absolute; left: 69px; top: 21px;" ></div>
+            <img src="imgs/bkgdimage.gif" class="background" style="left: 40%"/>
+            <img src="imgs/line.jpg" class="line" style="left: 40%"/>
+            <div class="numbers" id="dhour" style="left: 40%" ></div>
 
-            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 141px; top: 12px;"/>
-            <img src="line.jpg" class="line" style="position: absolute; left: 141px; top: 40px;"/>
-            <div class="numbers" id="dhour" style="position: absolute; left: 141px; top: 21px;" ></div>
+            <img src="imgs/bkgdimage.gif" class="background" style="left: 50%"/>
+            <img src="imgs/line.jpg" class="line" style="left: 50%"/>
+            <div class="numbers" id="dmin" style="left: 50%" ></div>
 
-            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 213px; top: 12px;"/>
-            <img src="line.jpg" class="line" style="position: absolute; left: 213px; top: 40px;"/>
-            <div class="numbers" id="dmin" style="position: absolute; left: 213px; top: 21px;" ></div>
+            <img src="imgs/bkgdimage.gif" class="background" style="left: 60%"/>
+            <img src="imgs/line.jpg" class="line" style="left: 60%"/>
+            <div class="numbers" id="dsec" style="left: 60%" ></div>
 
-            <img src="bkgdimage.gif" class="background" style="position: absolute; left: 285px; top: 12px;"/>
-            <img src="line.jpg" class="line" style="position: absolute; left: 285px; top: 40px;"/>
-            <div class="numbers" id="dsec" style="position: absolute; left: 285px; top: 21px;" ></div>
+            <div class="title" id="days" style="left: 30%" >Days</div>
+            <div class="title" id="hours" style="left: 40%" >Hours</div>
+            <div class="title" id="minutes" style="left: 50%" >Minutes</div>
+            <div class="title" id="seconds" style="left: 60%" >Seconds</div>
 
-            <div class="title" id="days" style="position: absolute; left: 66px; top: 73px;" >Days</div>
-            <div class="title" id="hours" style="position: absolute; left: 138px; top: 73px;" >Hours</div>
-            <div class="title" id="minutes" style="position: absolute; left: 210px; top: 73px;" >Minutes</div>
-            <div class="title" id="seconds" style="position: absolute; left: 282px; top: 73px;" >Seconds</div>
+            <div class="numbers" id="count2" style="top: 180px; background-color: #5F0B5F; z-index: 20; left: 30%"></div>
+
         </div>
 
         <script type="text/javascript">
@@ -101,7 +118,7 @@
                 if (timeLeft <= 0){
                     document.getElementById('count2').innerHTML = msg;
                     document.getElementById('count2').style.display = "inline";
-                    document.getElementById('count2').style.width = "390px";
+                    document.getElementById('count2').style.width = "40%";
                     document.getElementById('dday').innerHTML  = 0;
                     document.getElementById('dhour').innerHTML = 0;
                     document.getElementById('dmin').innerHTML  = 0;
