@@ -120,17 +120,17 @@
                     document.getElementById('count2').style.display = "inline";
                     document.getElementById('count2').style.width = "40%";
                     document.getElementById('dday').innerHTML  = 0;
-                    document.getElementById('dhour').innerHTML = 0;
-                    document.getElementById('dmin').innerHTML  = 0;
-                    document.getElementById('dsec').innerHTML  = 0;
+                    document.getElementById('dhour').innerHTML = '00';
+                    document.getElementById('dmin').innerHTML  = '00';
+                    document.getElementById('dsec').innerHTML  = '00';
                     return;
                 }
                 else {
                     document.getElementById('count2').style.display = "none";
                     document.getElementById('dday').innerHTML  = daysLeft;
-                    document.getElementById('dhour').innerHTML = hrsLeft;
-                    document.getElementById('dmin').innerHTML  = minsLeft;
-                    document.getElementById('dsec').innerHTML  = secsLeft;
+                    document.getElementById('dhour').innerHTML = ("0" + hrsLeft).slice(-2);
+                    document.getElementById('dmin').innerHTML  = ("0" + minsLeft).slice(-2);
+                    document.getElementById('dsec').innerHTML  = ("0" + secsLeft).slice(-2);
                     setTimeout("countdown()",1000);
                 }
             }
